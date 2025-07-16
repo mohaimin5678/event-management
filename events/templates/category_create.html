@@ -4,12 +4,12 @@
     {% csrf_token %}
     <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
         <label class="col-span-1 font-semibold text-xl ml-auto" for="name">Category Name <span class="text-red-600">*</span></label>
-        <input class="col-span-3 w-8/12 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3  py-2 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" id="name" name="name" type="text" placeholder="Enter the name of your event"/>
+        <input class="col-span-3 w-8/12 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3  py-2 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" id="name" name="name" type="text" placeholder="Enter the category name" required/>
     </div>
     <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
         <label class="col-span-1 font-semibold text-xl ml-auto" for="description"> Category Description <span class="text-red-600">*</span></label>
         <textarea class="col-span-3 w-8/12 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 py-2 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow resize-none"
-        id="description" name="description" placeholder="Enter category description" rows="4"></textarea>
+        id="description" name="description" placeholder="Enter category description" rows="4" required></textarea>
     </div>
     <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
         <div class="col-span-1"></div> 
