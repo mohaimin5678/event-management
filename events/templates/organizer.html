@@ -1,0 +1,57 @@
+{% extends "common.html" %}
+{% load static %}
+{% block title %}Organizer{% endblock title %}
+{% block common %}
+<main class="mt-16 w-10/12 mx-auto">
+    <h1 class="text-3xl font-bold mb-8">All Event Details</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-5 md:mb-8">
+        <a href="?show=today">
+            <div class="rounded-xl p-6 shadow-sm bg-yellow-500 text-white font-semibold text-center">
+                <p class="text-xl font-medium mb-4">TOTAL PARTICIPANTS</p>
+                <p class="text-3xl font-semibold mb-1">{{ total_participants }}</p>
+            </div>
+        </a>
+        <a href="?show=all">
+            <div class="rounded-xl p-6 shadow-sm bg-yellow-500 text-white font-semibold text-center">
+                <p class="text-xl font-medium mb-4">TOTAL EVENTS</p>
+                <p class="text-3xl font-semibold mb-1">{{ total_events }}</p>
+            </div>
+        </a>
+        <a href="?show=upcoming">
+            <div class="rounded-xl p-6 shadow-sm bg-yellow-500 text-white font-semibold text-center">
+                <p class="text-xl font-medium mb-4">TOTAL UPCOMING EVENTS</p>
+                <p class="text-3xl font-semibold mb-1">{{ upcoming_events }}</p>
+            </div>
+        </a>
+        <a href="?show=past">
+            <div class="rounded-xl p-6 shadow-sm bg-yellow-500 text-white font-semibold text-center">
+                <p class="text-xl font-medium mb-4">TOTAL PAST EVENTS</p>
+                <p class="text-3xl font-semibold mb-1">{{ past_events }}</p>
+            </div>
+        </a>
+    </div>
+    <h1 class="text-3xl font-bold mb-8">{{ event_heading }}</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-5 md:mb-8">
+        <!-- task 1 -->
+         {% for event in events %}
+        <div class="bg-white rounded-xl p-6 shadow-sm">
+            <img src="{% static 'images/Events.webp' %}" alt="" class="h-48 mb-4 mx-auto">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800 text-center">{{ event.name }}</h2>
+            <div class="flex flex-row justify-between items-center mb-4">
+                <div class="flex flex-row">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" /></svg>
+                    <p class="ml-2 font-semibold text-gray-800">Date: {{ event.event_date }}</p>
+                </div>
+                <div class="flex flex-row">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                    <p class="ml-2 font-semibold text-gray-800">Time: {{ event.event_time }}</p>
+                </div>
+            </div>
+            <a href="{% url 'event_details' event.id %}" class="px-2 py-1 w-8/12 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold block mx-auto text-center">Details</a>
+        </div>
+        {% empty %}
+        <p class="col-span-full text-center text-gray-600 text-xl font-semibold py-8"> No events to show.</p>
+        {% endfor %}
+    </div>
+</main>
+{% endblock common %}

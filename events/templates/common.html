@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="bg-gray-50">
+    <header>
+        <div class="grid grid-cols-2 gap-4 py-1 bg-sky-950 mb-8">
+            <div class="ms-16 items-center my-auto w-36 py-2">
+                <a href="{% url 'home' %}"><img src="{% static 'images/logo2.png' %}" alt=""></a>
+            </div>
+            <div class="flex flex-row justify-evenly items-center">
+                <a href="{% url 'home' %}" class="text-white hover:text-yellow-500 font-semibold md:text-lg text-sm hover:underline underline-offset-8 decoration-yellow-500">Home</a>
+                <a href="{% url 'organizer' %}" class="text-white hover:text-yellow-500 font-semibold md:text-lg text-sm hover:underline underline-offset-8 decoration-yellow-500">Organizer</a>
+                <a href="{% url 'dashboard' %}" class="text-white hover:text-yellow-500 font-semibold md:text-lg text-sm hover:underline underline-offset-8 decoration-yellow-500">Dashboard</a>
+                <a href="" class="text-white hover:text-yellow-500 font-semibold md:text-lg text-sm hover:underline underline-offset-8 decoration-yellow-500">Contact</a>
+            </div>
+        </div>
+    </header>
+    {% block common %}
+    {% endblock common %}
+    <footer class="bg-sky-950 py-3">
+        <div class="flex flex-col justify-center items-center">
+            <div class="w-44 mb-4">
+                <img src="{% static 'images/logo2.png' %}" alt="">
+            </div>
+            <p class="w-5/12 text-gray-200 text-center mb-8">Professional event solutions tailored to your vision — delivering excellence, precision, and memorable experiences with every gathering we organize.</p>
+            <p class="text-gray-200 mb-1"><span class="font-semibold">Address: </span>Sylhet, Bangladesh</p>
+            <p class="text-gray-200 mb-3"><span class="font-semibold">Email: </span>mohaimin112233@gmail.com</p>
+            <div class="flex justify-between items-center gap-x-8">
+                <a href="https://github.com/mohaimin5678"><i class="fa-brands fa-github font-bold text-2xl text-yellow-300"></i></a>
+                <a href="https://www.linkedin.com/in/md-abdul-mohaimin-al-sayed-42b842283/"><i class="fa-brands fa-linkedin font-bold text-2xl text-yellow-300"></i></a>
+                <a href="https://codeforces.com/profile/MohaiminSayed5678"><i class="fa-solid fa-code font-bold text-2xl text-yellow-300"></i></a>
+            </div>
+            <hr class="my-4 border-t border-gray-900 opacity-25 w-full">
+            <p class="w-5/12 text-gray-200 text-center">Copyright @ 2026 Eventify Organizer</p>
+        </div>
+    </footer>
+</body>
+</html>

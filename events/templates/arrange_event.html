@@ -1,0 +1,74 @@
+{% extends "dashboard.html" %}
+{% block formfor %}
+<form action="{% url 'arrange_event' %}" method="POST" class="flex flex-col gap-y-4 mb-12">
+    {% csrf_token %}
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="name">Event Name <span class="text-red-600">*</span></label>
+        <input class="col-span-3 w-8/12 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3  py-2 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" id="name" name="name" type="text" placeholder="Enter the name of your event"/>
+    </div>
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="description">
+        Event Description <span class="text-red-600">*</span></label>
+        <textarea class="col-span-3 w-8/12 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 py-2 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow resize-none"
+        id="description" name="description" placeholder="Enter event description" rows="4"></textarea>
+    </div>
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3 items-center">
+        <p class="col-span-1 font-semibold text-xl ml-auto">Date <span class="text-red-600">*</span></p>
+        <div class="col-span-3 flex items-center border border-gray-300 rounded overflow-hidden w-8/12">
+            <div class="bg-gray-100 px-3 py-2 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+            </div>
+            <input type="text" name="event_date" placeholder="YYYY-MM-DD" class="w-full px-4 py-2 focus:outline-none"/>
+        </div>
+    </div>
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3 items-center">
+        <p class="col-span-1 font-semibold text-xl ml-auto">Time <span class="text-red-600">*</span></p>
+        <div class="col-span-3 flex items-center border border-gray-300 rounded overflow-hidden w-8/12">
+            <div class="bg-gray-100 px-3 py-2 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2m-4-10a9 9 0 100 18 9 9 0 000-18z" />
+                </svg>
+            </div>
+            <input type="time" name="event_time" class="w-full px-4 py-2 focus:outline-none" step="60"/>
+        </div>
+    </div>
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="location">Location <span class="text-red-600">*</span></label>
+        <input class="col-span-3 w-8/12 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3  py-2 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" id="location" name="location" type="text" placeholder="Enter the location of your event"/>
+    </div>
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
+        <p class="col-span-1 font-semibold text-xl ml-auto">Select a Category:</p>
+        <div class="w-full col-span-3">
+            {% comment %}here the categories will be shown{% endcomment %}
+            {% for category in categories %}
+            <div>
+                <label class="items-center mr-4">
+                    <input type="radio" name="category" value="{{ category.id }}" class="form-radio text-blue-600">
+                    <span class="ml-2 text-lg">{{category.name}}</span>
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
+        <div class="col-span-1"></div> 
+        <div class="col-span-3 w-8/12 flex justify-end">
+            <button type="submit" class="bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm px-4 py-2 rounded-md shadow-md">Submit</button>
+        </div>
+    </div>
+</form>
+{% if success %}
+<div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+    <h2 class="text-xl font-semibold mb-2 text-green-700">Success</h2>
+    <p class="text-gray-700">Event added successfully!</p>
+    <div class="text-right mt-4">
+      <button onclick="window.location.href='{% url 'dashboard' %}'" class="text-sm px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500">OK</button>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock formfor %}

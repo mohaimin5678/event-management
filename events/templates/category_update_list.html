@@ -1,0 +1,15 @@
+{% extends "dashboard.html" %}
+{% block formfor %}
+<h2 class="text-2xl font-bold mb-6">Select a Category to Update</h2>
+
+<ul class="space-y-4 mb-8">
+  {% for category in categories %}
+  <li class="flex justify-between items-center border p-4 rounded-md">
+    <p class="text-lg font-medium">{{ category.name }}</p>
+    <a href="{% url 'update_category' category.id %}" class="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-md">
+      Update
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

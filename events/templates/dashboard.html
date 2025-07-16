@@ -1,0 +1,56 @@
+{% extends "common.html" %}
+{% block title %}Dashboard{% endblock title %}
+{% block common %}
+<main class="w-10/12 mx-auto">
+    <h1 class="text-3xl font-bold mb-8">Admin Dashboard</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-5 md:mb-8">
+        <a href="{% url 'arrange_event' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Arrange an Event</p>
+            </div>
+        </a>
+        <a href="{% url 'insert_participant' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Insert Participant</p>
+            </div>
+        </a>
+        <a href="{% url 'category_create' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Create a Category</p>
+            </div>
+        </a>
+        <a href="{% url 'event_search' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Update an Event</p>
+            </div>
+        </a>
+        <a href="{% url 'search_participant' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Update a Participant</p>
+            </div>
+        </a>
+        <a href="{% url 'category_update_list' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Update a Category</p>
+            </div>
+        </a>
+        <a href="{% url 'delete_event_search' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Delete an Event</p>
+            </div>
+        </a>
+        <a href="{% url 'search_participant_delete' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Delete a Participant</p>
+            </div>
+        </a>
+        <a href="{% url 'delete_category_list' %}">
+            <div class="rounded-xl py-5 shadow-sm bg-yellow-500 text-white font-semibold">
+                <p class="text-2xl font-bold mb-4 text-center">Delete a Category</p>
+            </div>
+        </a>
+    </div>
+    {% block formfor %}{% endblock formfor %}
+
+</main>
+{% endblock common %}

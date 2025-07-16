@@ -1,0 +1,32 @@
+{% extends "dashboard.html" %}
+{% block formfor %}
+<form action="{% url 'create_category' %}" method="POST"  class="flex flex-col gap-y-4 mb-12">
+    {% csrf_token %}
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="name">Category Name <span class="text-red-600">*</span></label>
+        <input class="col-span-3 w-8/12 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3  py-2 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" id="name" name="name" type="text" placeholder="Enter the name of your event"/>
+    </div>
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="description"> Category Description <span class="text-red-600">*</span></label>
+        <textarea class="col-span-3 w-8/12 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 py-2 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow resize-none"
+        id="description" name="description" placeholder="Enter category description" rows="4"></textarea>
+    </div>
+    <div class="grid grid-flow-row-dense grid-cols-4 gap-x-3">
+        <div class="col-span-1"></div> 
+        <div class="col-span-3 w-8/12 flex justify-end">
+            <button type="submit" class="bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm px-4 py-2 rounded-md shadow-md">Submit</button>
+        </div>
+    </div>
+</form>
+{% if success %}
+<div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+    <h2 class="text-xl font-semibold mb-2 text-green-700">Success</h2>
+    <p class="text-gray-700">Category created successfully!</p>
+    <div class="text-right mt-4">
+      <button onclick="window.location.href='{% url 'dashboard' %}'" class="text-sm px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500">OK</button>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock formfor %}

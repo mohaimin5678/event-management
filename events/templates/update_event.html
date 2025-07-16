@@ -1,0 +1,62 @@
+{% extends "dashboard.html" %}
+{% block formfor %}
+
+
+
+<h2 class="text-2xl font-bold mb-6">Update Event: {{ event.name }}</h2>
+
+<form method="POST" class="flex flex-col gap-y-4 mb-12">
+    {% csrf_token %}
+
+    <div class="grid grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="id_name">Event Name</label>
+        <div class="col-span-3 w-8/12">{{ form.name }}</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="id_description">Description</label>
+        <div class="col-span-3 w-8/12">{{ form.description }}</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="id_event_date">Date</label>
+        <div class="col-span-3 w-8/12">{{ form.event_date }}</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="id_event_time">Time</label>
+        <div class="col-span-3 w-8/12">{{ form.event_time }}</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto" for="id_location">Location</label>
+        <div class="col-span-3 w-8/12">{{ form.location }}</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-x-3">
+        <label class="col-span-1 font-semibold text-xl ml-auto">Category</label>
+        <div class="col-span-3 w-8/12">{{ form.category }}</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-x-3">
+        <div class="col-span-1"></div>
+        <div class="col-span-3 w-8/12 flex justify-end">
+            <button type="submit"
+                    class="bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm px-4 py-2 rounded-md shadow-md">
+                Update
+            </button>
+        </div>
+    </div>
+</form>
+{% if success %}
+<div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+        <h2 class="text-xl font-semibold mb-2 text-green-700">Success</h2>
+        <p class="text-gray-700">Event updated successfully!</p>
+        <div class="text-right mt-4">
+            <button onclick="window.location.href='{% url 'dashboard' %}'" class="text-sm px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500">OK</button>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
