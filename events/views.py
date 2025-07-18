@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from events.forms import CategoryForm, EventForm, ParticipantForm, EventUpdateForm, ParticipantUpdateForm, CategoryUpdateForm
 from events.models import Event,Participant,Category
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.urls import reverse
 from django.utils.timezone import now
 # Create your views here.
@@ -227,12 +227,18 @@ def delete_category_view(request, id):
 
 
 def organizer_view(request):
-    total_participants = Participant.objects.count()
-    total_events = Event.objects.count()
-
     today = now().date()
-    upcoming_events = Event.objects.filter(event_date__gt=today).count()
-    past_events = Event.objects.filter(event_date__lt=today).count()
+    counts = Event.objects.aggregate(
+        total_events=Count('id'),
+        upcoming=Count('id', filter=Q(event_date__gt=today)),
+        past=Count('id', filter=Q(event_date__lt=today)),
+        today_count=Count('id', filter=Q(event_date=today))
+    )
+
+    total_participants = Participant.objects.count()
+    total_events = counts['total_events']
+    upcoming_events = counts['upcoming']
+    past_events = counts['past']
     todays_events = Event.objects.filter(event_date=today)
 
     show = request.GET.get('show')
